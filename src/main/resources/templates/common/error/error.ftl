@@ -123,7 +123,7 @@
 <div class="container">
     <h2>${(status)!500}</h2>
     <h1 class="title">${(error)!'未知错误'}.</h1>
-    <p>${(message)!'未知错误！可能存在的原因：未正确设置主题或主题文件缺失。'}</p>
+    <p>${(message)!'nhầm lẫn không rõ! Các lý do có thể xảy ra: chủ đề không được đặt đúng hoặc thiếu tệp chủ đề.'}</p>
     <div class="back-home">
         <button onclick="window.location.href='${blog_url!}'">首页</button>
     </div>

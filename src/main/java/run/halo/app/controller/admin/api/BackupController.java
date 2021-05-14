@@ -59,7 +59,7 @@ public class BackupController {
         return backupService
             .getBackup(Paths.get(haloProperties.getBackupDir(), filename), WHOLE_SITE)
             .orElseThrow(() ->
-                new NotFoundException("备份文件 " + filename + " 不存在或已删除！").setErrorData(filename));
+                new NotFoundException("tập tin sao lưu " + filename + " Không tồn tại hoặc đã bị xóa!").setErrorData(filename));
     }
 
     @GetMapping("data/fetch")
@@ -67,7 +67,7 @@ public class BackupController {
         return backupService
             .getBackup(Paths.get(haloProperties.getDataExportDir(), filename), JSON_DATA)
             .orElseThrow(() ->
-                new NotFoundException("备份文件 " + filename + " 不存在或已删除！").setErrorData(filename));
+                new NotFoundException("tập tin sao lưu " + filename + " Không tồn tại hoặc đã bị xóa!").setErrorData(filename));
     }
 
     @GetMapping("markdown/fetch")
@@ -75,7 +75,7 @@ public class BackupController {
         return backupService
             .getBackup(Paths.get(haloProperties.getBackupMarkdownDir(), filename), MARKDOWN)
             .orElseThrow(() ->
-                new NotFoundException("备份文件 " + filename + " 不存在或已删除！").setErrorData(filename));
+                new NotFoundException("tập tin sao lưu " + filename + " Không tồn tại hoặc đã bị xóa!").setErrorData(filename));
     }
 
     @PostMapping("work-dir")

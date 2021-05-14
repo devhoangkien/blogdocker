@@ -103,7 +103,7 @@ public class InstallController {
             .getByPropertyOrDefault(PrimaryProperties.IS_INSTALLED, Boolean.class, false);
 
         if (isInstalled) {
-            throw new BadRequestException("该博客已初始化，不能再次安装！");
+            throw new BadRequestException("Blog này đã được khởi tạo và không thể được cài đặt lại!");
         }
 
         // Initialize settings
@@ -128,10 +128,10 @@ public class InstallController {
         createDefaultMenu();
 
         eventPublisher.publishEvent(
-            new LogEvent(this, user.getId().toString(), LogType.BLOG_INITIALIZED, "博客已成功初始化")
+            new LogEvent(this, user.getId().toString(), LogType.BLOG_INITIALIZED, "Blog đã được khởi tạo thành công")
         );
 
-        return BaseResponse.ok("安装完成！");
+        return BaseResponse.ok("Quá trình cài đặt đã hoàn tất!");
     }
 
     private void createDefaultMenu() {
@@ -143,7 +143,7 @@ public class InstallController {
 
         MenuParam menuIndex = new MenuParam();
 
-        menuIndex.setName("首页");
+        menuIndex.setName("Home");
         menuIndex.setUrl("/");
         menuIndex.setPriority(1);
 
@@ -151,19 +151,19 @@ public class InstallController {
 
         MenuParam menuArchive = new MenuParam();
 
-        menuArchive.setName("文章归档");
+        menuArchive.setName("Lưu trữ");
         menuArchive.setUrl("/archives");
         menuArchive.setPriority(2);
         menuService.create(menuArchive.convertTo());
 
         MenuParam menuCategory = new MenuParam();
-        menuCategory.setName("默认分类");
+        menuCategory.setName("Danh mục");
         menuCategory.setUrl("/categories/default");
         menuCategory.setPriority(3);
         menuService.create(menuCategory.convertTo());
 
         MenuParam menuSheet = new MenuParam();
-        menuSheet.setName("关于页面");
+        menuSheet.setName("Giới thiệu");
         menuSheet.setUrl("/s/about");
         menuSheet.setPriority(4);
         menuService.create(menuSheet.convertTo());
@@ -183,13 +183,13 @@ public class InstallController {
         }
 
         PostComment comment = new PostComment();
-        comment.setAuthor("Halo");
-        comment.setAuthorUrl("https://halo.run");
+        comment.setAuthor("DevHoangKien");
+        comment.setAuthorUrl("https://devhoangkien.com");
         comment.setContent(
-            "欢迎使用 Halo，这是你的第一条评论，头像来自 [Gravatar](https://cn.gravatar.com)，"
-                + "你也可以通过注册 [Gravatar]"
-                + "(https://cn.gravatar.com) 来显示自己的头像。");
-        comment.setEmail("hi@halo.run");
+            "Chào mừng bạn đến với Halo, đây là nhận xét đầu tiên của bạn,"
+                + "Bạn cũng có thể đăng ký bằng"
+                + " Để hiển thị hình đại diện của bạn.");
+        comment.setEmail("devhoangkien@gmail.com");
         comment.setPostId(post.getId());
         postCommentService.create(comment);
     }
@@ -209,19 +209,10 @@ public class InstallController {
         postParam.setStatus(PostStatus.PUBLISHED);
         postParam.setOriginalContent("## Hello Halo\n"
             + "\n"
-            + "如果你看到了这一篇文章，那么证明你已经安装成功了，感谢使用 [Halo](https://halo.run) 进行创作，希望能够使用愉快。\n"
+            + "Nếu thấy bài viết này chứng tỏ bạn đã cài đặt thành công\n"
             + "\n"
-            + "## 相关链接\n"
-            + "\n"
-            + "- 官网：[https://halo.run](https://halo.run)\n"
-            + "- 文档：[https://docs.halo.run](https://docs.halo.run)\n"
-            + "- 社区：[https://bbs.halo.run](https://bbs.halo.run)\n"
-            + "- 主题仓库：[https://halo.run/themes.html](https://halo.run/themes.html)\n"
-            + "- 开源地址：[https://github.com/halo-dev/halo](https://github.com/halo-dev/halo)\n"
-            + "\n"
-            + "在使用过程中，有任何问题都可以通过以上链接找寻答案，或者联系我们。\n"
-            + "\n"
-            + "> 这是一篇自动生成的文章，请删除这篇文章之后开始你的创作吧！\n"
+            
+            + ">Đây là một bài viết được tạo tự động, vui lòng xóa bài viết này và bắt đầu sáng tạo của bạn!\n"
             + "\n");
 
         Set<Integer> categoryIds = new HashSet<>();
@@ -242,14 +233,14 @@ public class InstallController {
 
         SheetParam sheetParam = new SheetParam();
         sheetParam.setSlug("about");
-        sheetParam.setTitle("关于页面");
+        sheetParam.setTitle("Giới thiệu");
         sheetParam.setStatus(PostStatus.PUBLISHED);
-        sheetParam.setOriginalContent("## 关于页面\n"
+        sheetParam.setOriginalContent("## Giới thiệu\n"
             + "\n"
-            + "这是一个自定义页面，你可以在后台的 `页面` -> `所有页面` -> `自定义页面` 找到它，"
-            + "你可以用于新建关于页面、留言板页面等等。发挥你自己的想象力！\n"
+            + "Đây là một trang tùy chỉnh, bạn có thể tìm thấy nó ở hậu trường `trang` ->` tất cả các trang` -> `trang tùy chỉnh`,"
+            + "Bạn có thể sử dụng nó để tạo mới về các trang, trang bảng tin, v.v. Sử dụng trí tưởng tượng của riêng bạn!\n"
             + "\n"
-            + "> 这是一篇自动生成的页面，你可以在后台删除它。");
+            + "> Đây là trang được tạo tự động, bạn có thể xóa nó trong nền.");
         sheetService.createBy(sheetParam.convertTo(), false);
     }
 

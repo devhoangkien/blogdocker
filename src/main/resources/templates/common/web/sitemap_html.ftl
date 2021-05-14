@@ -3,11 +3,11 @@ see https://gitee.com/yadong.zhang/DBlog/blob/master/blog-web/src/main/java/com/
 -->
 <#compress >
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>${blog_title!} 网站地图</title>
+    <title>${blog_title!} sitemap</title>
     <meta name="robots" content="index,follow"/>
     <style type="text/css">
         body {

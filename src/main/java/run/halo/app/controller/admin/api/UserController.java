@@ -89,7 +89,7 @@ public class UserController {
                 throw new BadRequestException("暂不支持的 MFA 认证的方式");
             }
         } else {
-            throw new BadRequestException("MFA 认证已启用，无需重复操作");
+            throw new BadRequestException("MFA Xác thực được kích hoạt, không cần lặp lại thao tác");
         }
     }
 

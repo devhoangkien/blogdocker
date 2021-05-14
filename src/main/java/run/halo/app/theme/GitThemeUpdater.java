@@ -42,7 +42,7 @@ public class GitThemeUpdater implements ThemeUpdater {
         // get theme property
         final var oldThemeProperty = themeRepository.fetchThemePropertyByThemeId(themeId)
             .orElseThrow(
-                () -> new NotFoundException("主题 " + themeId + " 不存在或以删除！").setErrorData(themeId));
+                () -> new NotFoundException("chủ đề " + themeId + " Không tồn tại hoặc có thể bị xóa!").setErrorData(themeId));
 
         // get update config
         final var gitRepo = oldThemeProperty.getRepo();
@@ -124,11 +124,11 @@ public class GitThemeUpdater implements ThemeUpdater {
                             abortRebaseResult.getStatus(),
                             abortRebaseResult.getConflicts());
                     }
-                    throw new ThemeUpdateException("无法自动合并最新文件！请尝试删除主题并重新拉取。");
+                    throw new ThemeUpdateException("Các tệp mới nhất không thể được hợp nhất tự động! Vui lòng thử xóa chủ đề và kéo lại.");
                 }
             }
         } catch (URISyntaxException | GitAPIException e) {
-            throw new ServiceException("合并主题失败！请确认该主题支持在线更新。", e);
+            throw new ServiceException("Không thể hợp nhất các chủ đề! Vui lòng xác nhận rằng chủ đề hỗ trợ cập nhật trực tuyến.", e);
         }
 
         return newThemeProperty;

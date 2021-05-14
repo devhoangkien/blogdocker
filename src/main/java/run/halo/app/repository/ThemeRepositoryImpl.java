@@ -133,14 +133,14 @@ public class ThemeRepositoryImpl
         // 1. check existence
         final var alreadyExist = fetchThemeByThemeId(newProperty.getId()).isPresent();
         if (alreadyExist) {
-            throw new AlreadyExistsException("当前安装的主题已存在");
+            throw new AlreadyExistsException("Chủ đề hiện được cài đặt đã tồn tại");
         }
 
         // 2. check version compatibility
         // Not support current halo version.
         if (checkThemePropertyCompatibility(newProperty)) {
             throw new ThemeNotSupportException(
-                "当前主题仅支持 Halo " + newProperty.getRequire() + " 及以上的版本");
+                "Chủ đề hiện tại chỉ hỗ trợ Halo " + newProperty.getRequire() + " Và ở trên");
         }
 
         // 3. move the temp folder into templates/themes/{theme_id}
